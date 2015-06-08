@@ -26,7 +26,7 @@ write.table(record, "list_of_pis_by_locus.txt", sep="",quote=FALSE, row.names=FA
 
 ```
 
-After I've run RAxML on my 'complete' dataset, I then use a modification on the file above to prune the file with the genetrees for all the loci, just to the more variable ones. To do this, you need to prune the "list_of_pis_by_locus.txt" to just the first column with the loci names, for the loci you want to get rid of out of your file.
+After I've run RAxML on my 'complete' dataset, I then use a modification of the file spat out above to prune the total genetrees file for all the loci, just to the more variable ones. To do this, you need to modify the "list_of_pis_by_locus.txt" to just the first column with the loci names, containing the loci you want to get rid of out of your file.
 ```
 #getting list of loci to cull (those with < 20 pis). Probably could pipe the output of the other script straight into here, but in the meantime
 # it is just after a text file with each locus to remove on a new line (e.g. one column)
