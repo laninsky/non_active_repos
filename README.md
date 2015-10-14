@@ -19,8 +19,9 @@ done
 
 for i in `ls *.fasta`;
 do mv $i temp;
+echo $i > tempname;
 Rscript species_filtering.R;
-rm temp;
+rm temp*;
 done;
 ```
 
