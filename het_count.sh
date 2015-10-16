@@ -1,3 +1,5 @@
+echo "locus het_sites length" > het_count.txt
+
 for i in `ls *.fasta`;
 do cp $i temp;
 echo $i > tempname;
