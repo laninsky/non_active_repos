@@ -22,7 +22,6 @@ sp_file <- matrix(c(species[,1],species[,1],species[,2],species[,2]),ncol=2)
 sp_file <- matrix(sp_file[order(sp_file[,1]),],ncol=2)
 sp_file <- matrix(sp_file[,2],ncol=1)
 
-
 locus_count <- 1
 tempfile <- NULL
 
@@ -106,38 +105,61 @@ unique_sp_array[i,3] <- 0
 }
 
 firstalleles <- seq(1,(length(sp_specific_allele)),2)
-unique_sp_array[i,4] <- (sum(sp_specific_SNP[firstalleles]!=sp_specific_SNP[firstalleles+1]))/sp_specific_n
+
+unique_hets <- rbind(sp_specific_SNP[firstalleles],sp_specific_SNP[firstalleles+1])
+if(as.numeric(unique_sp_array[i,1])>0) {
+unique_sp_array[i,4] <- sum((unique_hets[1,]!=unique_hets[2,])==TRUE)/as.numeric(unique_sp_array[i,1])
+} else {
+unique_sp_array[i,4] <- 0
+}
 }
 
 H_total <- sum(as.numeric(unique_sp_array[,4])*as.numeric(unique_sp_array[,1]))/sum(as.numeric(unique_sp_array[,1]))
 
 ind_array <- rep(0,(individuals_no))
 indcount <- seq(2,(individuals_no*2),2)
-for (i in indcount) {
-if(!(tempSNPs[i]==0)) {
-ind_array[indcount[i]/2] <- 1
+for (i in 1:length(indcount)) {
+if(!((tempalleles[(indcount[i]),1])==0)) {
+ind_array[(indcount[i])/2] <- 1
 }
 }
 
-templocussummary <- c(locus_count,seqlength,no_indivs,unique_sp_array[,1], no_k,unique_sp_array[,2],no_SNPs,unique_sp_array[,3],H_total,unique_sp_array[,4],ind_array)
+templocussummary <- c(locus_count,seqlength,(no_indivs/2),unique_sp_array[,1], no_k,unique_sp_array[,2],no_SNPs,unique_sp_array[,3],H_total,unique_sp_array[,4],ind_array)
 
-#STRUCTURE AND ALLELE FILES
+sites <- rbind(locus_count,sites)
+tempSNPs <- rbind(sites,tempSNPs)
+tempalleles <- rbind(locus_count,tempalleles)
+
+allele_file <- cbind(allele_file,tempalleles)
+SNP_file <- cbind(SNP_file,tempSNPs)
 
 } else {
 zeroarray <- cbind(as.matrix(species),0)
-
-
+zeroarray <- zeroarray[order(zeroarray[,1]),]
 
 for (k in 1:(individuals_no)) {
+for (i in 1:(dim(tempfile)[1])) {
+if ((length(grep(zeroarray[k,1],tempfile[i,1])))>0) {
+zeroarray[k,3] <- 1
+}
+}
+}
 
+zeronumbers <- rep(0,(length(uniquespecies)))
+zeroforadding <- zeronumbers
 
+for (i in 1:(length(uniquespecies))) {
+zeronumbers[i] <- sum(as.numeric(zeroarray[(which(zeroarray[,2]==uniquespecies[i])),3]))
+}
 
-if ((length(grep(SNP_file[(k+2),1],temp[i,1])))>0) {
+onezeroes <- rep(0,(length(uniquespecies)))
+for (i in 1:(length(uniquespecies))) {
+if(zeronumbers[i]>0) {
+onezeroes[i] <- 1
+}
+}
 
-ordered_samples
-
-
-templocussummary <- c(locus_count,seqlength,no_indivs,unique_sp_array[,1], 1,unique_sp_array[,2],no_SNPs,unique_sp_array[,3],H_total,unique_sp_array[,4],ind_array)
+templocussummary <- c(locus_count,seqlength,(no_indivs/2),zeronumbers,1,onezeroes,0,zeroforadding,0,zeroforadding,zeroarray[,3])
 
 }
 
