@@ -1,3 +1,5 @@
+###STILL NEEDS SOME WORK...NEED TO FOLLOW THROUGH FOR A COUPLE OF LOCI AND MAKE SURE IT IS BEHAVING AS IT SHOULD
+
 library(stringr)
 intable <- read.table("temp",header=FALSE,stringsAsFactors=FALSE,sep="\t")
 species <- read.table("species_assignments",header=FALSE,stringsAsFactors=FALSE,sep="")
