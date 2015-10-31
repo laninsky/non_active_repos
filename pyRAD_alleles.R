@@ -69,8 +69,14 @@ no_k <- dim(unique(proto_struct[,2:proto_cols]))[1]
 ks <- unique(proto_struct[,2:proto_cols])
 
 tempallelicstructure <- matrix("",ncol=1,nrow=no_indivs)
+if (is.null(no_k)) {
+for (a in 1:(length(ks))) {
+tempallelicstructure[(unique((which(proto_struct==ks[a],arr.ind=TRUE))[,1])),1] <- a
+}
+} else {
 for (a in 1:no_k) {
 tempallelicstructure[(unique((which(proto_struct==ks[a,],arr.ind=TRUE))[,1])),1] <- a
+}
 }
 
 tempSNPs <- matrix(0,ncol=no_SNPs,nrow=(individuals_no*2))
