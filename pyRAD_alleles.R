@@ -1,5 +1,3 @@
-###STILL NEEDS SOME WORK...NEED TO FOLLOW THROUGH FOR A COUPLE OF LOCI AND MAKE SURE IT IS BEHAVING AS IT SHOULD
-
 library(stringr)
 intable <- read.table("temp",header=FALSE,stringsAsFactors=FALSE,sep="\t")
 species <- read.table("species_assignments",header=FALSE,stringsAsFactors=FALSE,sep="")
@@ -187,3 +185,61 @@ tempcombine <- cbind(tempname,tempDNAseq)
 tempfile <- rbind(tempfile,tempcombine)
 }
 }
+
+#### UP TO HERE FOR THE FINAL READ OUT AND PROCCESSING
+
+write.table(locus_summary, "locus_summary.txt",quote=FALSE, col.names=FALSE,row.names=FALSE)
+rm(locus_summary)
+rm(intable)
+
+write.table(allele_file, "full_allele_record.txt",quote=FALSE, col.names=FALSE,row.names=FALSE)
+
+allele_file <- allele_file[2:(dim(allele_file)[1]),]
+
+write.table(allele_file, "allele.txt",quote=FALSE, col.names=FALSE,row.names=FALSE)
+
+print("allele.txt has the following number of taxa:")
+print(((dim(allele_file)[1])/2))
+print("allele.txt has the following number of loci:")
+print((dim(allele_file)[2])-1)
+
+#rm(allele_file) #remove the comment after making sure it is all good
+
+#do a back-up here of SNP_file, just in case
+
+SNP_file[(3:(dim(SNP_file)[1])),2:(dim(SNP_file)[2])]=="A" <- 1
+SNP_file[(3:(dim(SNP_file)[1])),2:(dim(SNP_file)[2])]=="C" <- 2
+SNP_file[(3:(dim(SNP_file)[1])),2:(dim(SNP_file)[2])]=="G" <- 3
+SNP_file[(3:(dim(SNP_file)[1])),2:(dim(SNP_file)[2])]=="T" <- 4
+SNP_file[(3:(dim(SNP_file)[1])),2:(dim(SNP_file)[2])]=="N" <- 0
+SNP_file[(3:(dim(SNP_file)[1])),2:(dim(SNP_file)[2])]=="-" <- 0
+
+write.table(SNP_file, "full_SNP_record.txt",quote=FALSE, col.names=FALSE,row.names=FALSE)
+
+#double check all of below
+
+loci <- unique(SNP_file[1,])
+noloci <- length(loci)
+high_grade <- SNP_file[,1]
+
+for (j in 2:(noloci)) {
+temp_high_grade <- (SNP_file[,(SNP_file[1,]==loci[j])])
+if (is.vector(temp_high_grade)) {
+temp_high_grade <- matrix(temp_high_grade)
+high_grade <- cbind(high_grade,temp_high_grade)
+} else {
+high_grade <- cbind(high_grade,temp_high_grade[,(which.min(t(matrix(colSums(temp_high_grade[3:(individuals_no*2+2),(temp_high_grade[1,]==loci[j])]==0)))))])
+}
+}
+
+final_structure <- high_grade[3:(individuals_no*2+2),]
+
+write.table(high_grade, "structure_with_double_header.txt",quote=FALSE, col.names=FALSE,row.names=FALSE)
+write.table(final_structure, "structure.txt",quote=FALSE, col.names=FALSE,row.names=FALSE)
+
+print("structure.txt has the following number of taxa:")
+print(individuals_no)
+print("structure.txt has the following number of loci:")
+print((dim(allele_file)[2])-1)
+
+
