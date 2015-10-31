@@ -70,14 +70,18 @@ proto_cols <- dim(proto_struct)[2]
 no_k <- dim(unique(proto_struct[,2:proto_cols]))[1]
 ks <- unique(proto_struct[,2:proto_cols])
 
-tempallelicstructure <- matrix("",ncol=1,nrow=no_indivs)
+tempallelicstructure <- matrix(0,ncol=1,nrow=no_indivs)
 if (is.null(no_k)) {
+no_k <- length(ks)
 for (a in 1:(length(ks))) {
 tempallelicstructure[(unique((which(proto_struct==ks[a],arr.ind=TRUE))[,1])),1] <- a
 }
 } else {
 for (a in 1:no_k) {
-tempallelicstructure[(unique((which(proto_struct==ks[a,],arr.ind=TRUE))[,1])),1] <- a
+for (i in 1:no_indivs)
+if (isTRUE(all(proto_struct[i,2:proto_cols]==ks[a,1:(dim(ks)[2])]))) {
+tempallelicstructure[i,1] <- a
+}
 }
 }
 
