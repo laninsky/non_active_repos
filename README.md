@@ -1,5 +1,5 @@
 # pyRAD_alleles_into_structure
-This set of scripts parses out pyRAD's allele file into a structure file based on alleles rather than SNPs. It also outputs info on cpmpleteness of the data set and if alleles are shared across populations/species.
+This set of scripts parses out pyRAD's allele file into a structure file based on alleles (rather than SNPs), as well as a SNP-based structure file. It also outputs info on completeness of the data set and if alleles are shared across populations/species.
 
 # species_assignments file
 This file consists of the sample names in the left-hand column and the species or population assignments in the right-hand column. The scripts will use this file to look at allele sharing across species/populations.
@@ -11,3 +11,21 @@ ChecKK063.assembled     hectors
 13193.assembled rightwhales
 PmaNZ016.assembled      spermwhales
 ```
+
+# Further downsampling
+If you would like to change the proportion of missing data allowed in your structure.txt file, or the taxa included, please follow the instructions at:
+https://github.com/laninsky/ambigoos_into_structure#what-if-you-want-to-tweak-the-individuals-in-the-filechange-completeness-of-dataset
+
+To modify the alleles.txt file, do the following steps:
+First step: grep everything except the samples you don't want e.g.
+```
+grep -v "Chem15NZ35*" full_allele_record.txt | grep -v "ChecKK063*" > mod_full_allele_record.txt
+```
+
+If you are just high-grading for completeness and don't want to exclude any samples then:
+```
+cp full_allele_record.txt mod_full_allele_record.txt
+```
+Second step:
+
+Rscript tweaking.R
