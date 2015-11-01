@@ -186,8 +186,6 @@ tempfile <- rbind(tempfile,tempcombine)
 }
 }
 
-#### UP TO HERE FOR THE FINAL READ OUT AND PROCCESSING
-
 write.table(locus_summary, "locus_summary.txt",quote=FALSE, col.names=FALSE,row.names=FALSE)
 rm(locus_summary)
 rm(intable)
@@ -203,16 +201,14 @@ print(((dim(allele_file)[1])/2))
 print("allele.txt has the following number of loci:")
 print((dim(allele_file)[2])-1)
 
-#rm(allele_file) #remove the comment after making sure it is all good
+rm(allele_file)
 
-#do a back-up here of SNP_file, just in case
-
-SNP_file[(3:(dim(SNP_file)[1])),2:(dim(SNP_file)[2])]=="A" <- 1
-SNP_file[(3:(dim(SNP_file)[1])),2:(dim(SNP_file)[2])]=="C" <- 2
-SNP_file[(3:(dim(SNP_file)[1])),2:(dim(SNP_file)[2])]=="G" <- 3
-SNP_file[(3:(dim(SNP_file)[1])),2:(dim(SNP_file)[2])]=="T" <- 4
-SNP_file[(3:(dim(SNP_file)[1])),2:(dim(SNP_file)[2])]=="N" <- 0
-SNP_file[(3:(dim(SNP_file)[1])),2:(dim(SNP_file)[2])]=="-" <- 0
+SNP_file[SNP_file == "A"] <- 1
+SNP_file[SNP_file == "C"] <- 2
+SNP_file[SNP_file == "G"] <- 3
+SNP_file[SNP_file == "T"] <- 4
+SNP_file[SNP_file == "N"] <- 0
+SNP_file[SNP_file == "-"] <- 0
 
 write.table(SNP_file, "full_SNP_record.txt",quote=FALSE, col.names=FALSE,row.names=FALSE)
 
