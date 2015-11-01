@@ -212,8 +212,6 @@ SNP_file[SNP_file == "-"] <- 0
 
 write.table(SNP_file, "full_SNP_record.txt",quote=FALSE, col.names=FALSE,row.names=FALSE)
 
-#double check all of below
-
 loci <- unique(SNP_file[1,])
 noloci <- length(loci)
 high_grade <- SNP_file[,1]
@@ -236,6 +234,6 @@ write.table(final_structure, "structure.txt",quote=FALSE, col.names=FALSE,row.na
 print("structure.txt has the following number of taxa:")
 print(individuals_no)
 print("structure.txt has the following number of loci:")
-print((dim(allele_file)[2])-1)
+print((dim(final_structure)[2])-1)
 
 
