@@ -27,5 +27,6 @@ If you are just high-grading for completeness and don't want to exclude any samp
 cp full_allele_record.txt mod_full_allele_record.txt
 ```
 Second step:
-
-Rscript tweaking.R
+```
+Rscript allele_tweaking.R
+```
