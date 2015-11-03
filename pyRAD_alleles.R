@@ -26,10 +26,10 @@ locus_count <- 1
 tempfile <- NULL
 
 for (j in 1:rows) {
-progress_update <- c(0.01,1,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90)
-if((j/rows*100) %in% progress_update) {
+progress_update <- c(1,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90)
+if((round(j/rows*100),0) %in% progress_update) {
 print(noquote("% progress through file:"))
-print(noquote((j/row*100)))
+print(noquote(round(j/rows*100),0))
 flush.console()
 }
 
