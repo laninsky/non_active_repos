@@ -28,8 +28,8 @@ tempfile <- NULL
 print(noquote("% progress through file:"))
 
 for (j in 1:rows) {
-progress_update <- c(1,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90)
-if((round((j/rows*100),0)) %in% progress_update) {
+progress_update <- c(1.0000000,5.0000000,10.0000000,15.0000000,20.0000000,25.0000000,30.0000000,35.0000000,40.0000000,45.0000000,50.0000000,55.0000000,60.0000000,65.0000000,70.0000000,75.0000000,80.0000000,85.0000000,90.0000000)
+if((round((j/rows*100),7)) %in% progress_update) {
 print(noquote((round((j/rows*100),0))))
 flush.console()
 }
