@@ -30,7 +30,7 @@ print(noquote("% progress through file:"))
 for (j in 1:rows) {
 progress_update <- c(1,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90)
 if((round((j/rows*100),0)) %in% progress_update) {
-print(noquote(round(j/rows*100),0))
+print(noquote((round((j/rows*100),0)))
 flush.console()
 }
 
