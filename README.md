@@ -13,7 +13,15 @@ PmaNZ016.assembled      spermwhales
 ```
 
 # Further downsampling
-If you would like to change the proportion of missing data allowed in your structure.txt file, or the taxa included, please follow the instructions at:
+You can run the pyRAD_alleles_into_structure.sh script after removing samples you don't want to use from your alleles file e.g.
+```
+grep -v "Chem15NZ35*" c88d6m4p3.alleles > temp
+mv c88d6m4p3.alleles original_c88d6m4p3.alleles
+mv temp c88d6m4p3.alleles
+```
+Make sure to tweak your species_assignment file so it matches what is now in your structure file.
+
+Alterately, if you would like to change the proportion of missing data allowed in your structure.txt file, or the taxa included, please follow the instructions at:
 https://github.com/laninsky/ambigoos_into_structure#what-if-you-want-to-tweak-the-individuals-in-the-filechange-completeness-of-dataset
 
 To modify the alleles.txt file, do the following steps:
