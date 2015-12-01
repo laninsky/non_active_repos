@@ -12,7 +12,7 @@ library(phyloch)
 listoffiles <- list.files(pattern="*.nex*")
 nooffiles <- length(listoffiles)
 
-record <- c("locus name","pis","length")
+record <- c("locusname","pis","length")
 
 for (j in 1:nooffiles) {
 write.table((gsub("?","N",(readLines(listoffiles[j])),fixed=TRUE)),"list_of_pis_by_locus.txt",sep="",quote=FALSE,row.names=FALSE,col.names=FALSE)
