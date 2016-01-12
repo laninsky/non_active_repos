@@ -56,10 +56,10 @@ I would suggest then moving the pitrees.tre and whitelist.txt files to a new wor
 DEST="/scratch/a499a400/gekko/complete_bootstraps"
 noloci=`wc -l whitelist.txt | awk '{print $1}'`
 
-for i in `seq 1 $noloci`;
-do locusname=`tail -n+$i whitelist.txt | head -n1`;
 for j in `seq 0 499`;
 do nolines=$(expr $j + 1);
+for i in `seq 1 $noloci`;
+do locusname=`tail -n+$i whitelist.txt | head -n1`;
 tail -n+$nolines $DEST/$locusname/RAxML_bootstrap.bootrep.$locusname | head -n1 >> boot$j;
 done;
 done;
