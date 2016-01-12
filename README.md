@@ -27,38 +27,24 @@ write.table(record, "list_of_pis_by_locus.txt",quote=FALSE, row.names=FALSE,col.
 
 ```
 
-After I've run RAxML on my 'complete' dataset, I then use a modification of the file spat out above to prune the total genetrees file for all the loci, to only the more variable ones. To do this, you need to modify the "list_of_pis_by_locus.txt" to just the first column with the loci names, containing the loci you want to get rid of out of your file. You can also use the list spat out here to summarize the number of pis in loci across different datasets using the code at: https://github.com/laninsky/comparing_lists
+You can also use this list to summarize the number of pis in loci across different datasets using the code at: https://github.com/laninsky/comparing_lists
+
+After I've run RAxML on my 'complete' dataset, I then use a modification of the file spat out above to prune the total genetrees file for all the loci, to only the more variable ones. To do this, you need to modify the "list_of_pis_by_locus.txt" to just the first column with the loci names, containing the loci you want to get rid of out of your file (and stripping any file suffixes e.g. 'nexus' from the names). Call this list "remove_list.txt". 
+
+You then need to navigate to your genetrees folder, and run the code at #6 at the following link in order to get a tree file which has the locus names given explicitly:
+https://github.com/laninsky/Phase_hybrid_from_next_gen/tree/master/post-processing
+
+After this, running the following code in R should constrain the trees in the file to just those NOT on the remove list.
+
 ```
-#getting list of loci to cull (those with < 20 pis). Probably could pipe the output of the other script straight into here, 
-#but in the meantime
-# it is just after a text file with each locus to remove on a new line (e.g. one column)
+# remove_list.txt is a text file with each locus to remove on a new line (e.g. one column)
 tocull <- as.matrix(read.csv("remove_list.txt",header=FALSE))
 
-#reading in the trees: make sure the sep character is something that doesn't occur anywhere in the file. Has to be a single character though...
-unrootedtreefile <- as.matrix(read.table("old_genetrees.tre",sep="@",header=FALSE))
+treefile <- as.matrix(read.table("ubertree.tre",sep=" ",header=FALSE))
 
-outputunrooted <- NULL
+output <- treefile[(!(treefile[,1] %in% tocull)),2]
 
-howmanytrees <- dim(unrootedtreefile)[1]
-howmanytocull <- dim(tocull)[1]
-
-j <- 1
-
-while(j <=howmanytrees) {
-for(i in 1:howmanytocull) {
-temp <- paste(tocull[i,1],",",sep="")
-cullline <- length(grep(temp,unrootedtreefile[j,1]))
-if(cullline>0) {
-break
-}
-}
-if(cullline<1) {
-outputunrooted <- cbind(outputunrooted,unrootedtreefile[j,1])
-}
-j <- j + 1
-}
-
-write.table(outputunrooted, "genetrees.tre", sep="",quote=FALSE, row.names=FALSE,col.names=FALSE)
+write.table(output, "pitrees.tre", sep="",quote=FALSE, row.names=FALSE,col.names=FALSE)
 ```
 
 #This pipeline wouldn't be possible without:
