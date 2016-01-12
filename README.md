@@ -29,7 +29,8 @@ write.table(record, "list_of_pis_by_locus.txt",quote=FALSE, row.names=FALSE,col.
 
 After I've run RAxML on my 'complete' dataset, I then use a modification of the file spat out above to prune the total genetrees file for all the loci, to only the more variable ones. To do this, you need to modify the "list_of_pis_by_locus.txt" to just the first column with the loci names, containing the loci you want to get rid of out of your file. You can also use the list spat out here to summarize the number of pis in loci across different datasets using the code at: https://github.com/laninsky/comparing_lists
 ```
-#getting list of loci to cull (those with < 20 pis). Probably could pipe the output of the other script straight into here, but in the meantime
+#getting list of loci to cull (those with < 20 pis). Probably could pipe the output of the other script straight into here, 
+#but in the meantime
 # it is just after a text file with each locus to remove on a new line (e.g. one column)
 tocull <- as.matrix(read.csv("remove_list.txt",header=FALSE))
 
