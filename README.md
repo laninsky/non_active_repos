@@ -51,19 +51,29 @@ write.table(output, "pitrees.tre", sep="",quote=FALSE, row.names=FALSE,col.names
 write.table(whitelist, "whitelist.txt", sep="",quote=FALSE, row.names=FALSE,col.names=FALSE)
 ```
 
-I would suggest then moving the pitrees.tre and whitelist.txt files to a new working folder, and putting them in subfolders "complete" and "boots", respectively. Navigate to the boots directory where the whitelist.txt file is. Using this file, we are going to pull the 'whitelist' loci's bootstrapped trees from the complete dataset using bash, so we that don't have to do this step again. Set DEST as the folder that contains the bootstrapped loci e.g. "complete_bootstraps". This step will take a while, but not as much time as having to run RAxML on all your bootstrapped data from scratch!
+I would suggest then moving the pitrees.tre and whitelist.txt files to a new working folder, and putting them in subfolders "complete" and "boots", respectively. Navigate to the boots directory where the whitelist.txt file is. Using this file, we are going to pull the 'whitelist' loci's bootstrapped trees from the complete dataset using bash, so we that don't have to do this step again. Set DEST as the folder that contains the bootstrapped loci e.g. "complete_bootstraps". This step will take a while, but not as much time as having to run RAxML on all your bootstrapped data from scratch! Change numboots to whatever the number of bootstraps you did originally was, minus one
 ```
 DEST="/scratch/a499a400/gekko/complete_bootstraps"
 noloci=`wc -l whitelist.txt | awk '{print $1}'`
+numboots=499
+bootplusone=$(expr $numboots + 1)
 
-for j in `seq 0 499`;
-do nolines=$(expr $j + 1);
 for i in `seq 1 $noloci`;
 do locusname=`tail -n+$i whitelist.txt | head -n1`;
-tail -n+$nolines $DEST/$locusname/RAxML_bootstrap.bootrep.$locusname | head -n1 >> boot$j;
+cat  $DEST/$locusname/RAxML_bootstrap.bootrep.$locusname >> combinedtrees
 done;
+
+for j in `seq 0 $numboots`;
+do extraj=$(expr $j + 1) 
+for i in `seq 1 $noloci`;
+do iter=$(expr $i - 1);
+iternext=$(expr $iter \* $bootplusone);
+final=$(expr $extraj + $iternext);
+tail -n+$final combinedtrees | head -n1 >> boot$j;
 done;
+done
 ```
+
 Using the boot0-boot499 files, you can then repeat your bootstrapping on these high-graded loci following along with the steps at: 
 https://github.com/laninsky/UCE_processing_steps
 
