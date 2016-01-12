@@ -31,10 +31,10 @@ You can also use this list to summarize the number of pis in loci across differe
 
 After I've run RAxML on my 'complete' dataset, I then use a modification of the file spat out above to prune the total genetrees file for all the loci, to only the more variable ones. To do this, you need to modify the "list_of_pis_by_locus.txt" to just the first column with the loci names, containing the loci you want to get rid of out of your file (and stripping any file suffixes e.g. 'nexus' from the names). Call this list "remove_list.txt". 
 
-You then need to navigate to your genetrees folder, and run the code at #6 at the following link in order to get a tree file which has the locus names given explicitly:
+You then need to navigate to your complete_genetrees folder, and run the code at #6 at the following link in order to get a tree file which has the locus names given explicitly:
 https://github.com/laninsky/Phase_hybrid_from_next_gen/tree/master/post-processing
 
-After this, running the following code in R should constrain the trees in the file to just those NOT on the remove list.
+After this, running the following code in R should constrain the trees in the "pitrees.tre" file to just those NOT on the remove list. It will also print out a file "whitelist.txt" which lists the retained loci. You are going to need this to filter the bootstrap replicates.
 
 ```
 # remove_list.txt is a text file with each locus to remove on a new line (e.g. one column)
@@ -44,8 +44,29 @@ treefile <- as.matrix(read.table("ubertree.tre",sep=" ",header=FALSE))
 
 output <- treefile[(!(treefile[,1] %in% tocull)),2]
 
+whitelist <- treefile[(!(treefile[,1] %in% tocull)),1]
+
 write.table(output, "pitrees.tre", sep="",quote=FALSE, row.names=FALSE,col.names=FALSE)
+
+write.table(whitelist, "whitelist.txt", sep="",quote=FALSE, row.names=FALSE,col.names=FALSE)
 ```
+
+I would suggest then moving the pitrees.tre and whitelist.txt files to a new working folder, and putting them in subfolders "complete" and "boots", respectively. Navigate to the boots directory where the whitelist.txt file is. Using this file, we are going to pull the 'whitelist' loci's bootstrapped trees from the complete dataset using bash, so we that don't have to do this step again. Set DEST as the folder that contains the bootstrapped loci e.g. "complete_bootstraps". This step will take a while, but not as much time as having to run RAxML on all your bootstrapped data from scratch!
+```
+DEST="/scratch/a499a400/gekko/complete_bootstraps"
+noloci=`wc -l whitelist.txt | awk '{print $1}'`
+
+for i in `seq 1 $noloci`;
+do locusname=`tail -n+$i whitelist.txt | head -n1`;
+for j in `seq 0 499`;
+do nolines=$(expr $j + 1);
+tail -n+$nolines $DEST/$locusname/RAxML_bootstrap.bootrep.$locusname | head -n1 >> boot$j;
+done;
+done;
+```
+Using the boot0-boot499 files, you can then repeat your bootstrapping on these high-graded loci following along with the steps at: 
+https://github.com/laninsky/UCE_processing_steps
+
 
 #This pipeline wouldn't be possible without:
 
