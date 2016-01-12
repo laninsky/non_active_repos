@@ -63,6 +63,9 @@ do locusname=`tail -n+$i whitelist.txt | head -n1`;
 cat  $DEST/$locusname/RAxML_bootstrap.bootrep.$locusname >> combinedtrees
 done;
 
+
+### This isn't quite satisfactory because there aren't exactly n=500 boostraps for each locus, so at the moment, the "last locus" is ### getting missed out. Probably need some control loops of while i < 500, n++, with if statements starting again from the beginning ###of combined trees ### if the end is reached. Look at this tomorrow.
+
 for j in `seq 0 $numboots`;
 do extraj=$(expr $j + 1) 
 for i in `seq 1 $noloci`;
