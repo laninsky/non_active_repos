@@ -57,24 +57,41 @@ DEST="/scratch/a499a400/gekko/complete_bootstraps"
 noloci=`wc -l whitelist.txt | awk '{print $1}'`
 numboots=499
 bootplusone=$(expr $numboots + 1)
+echo $bootplusone >> params
+echo $noloci >> params
 
 for i in `seq 1 $noloci`;
 do locusname=`tail -n+$i whitelist.txt | head -n1`;
 cat  $DEST/$locusname/RAxML_bootstrap.bootrep.$locusname >> combinedtrees
 done;
 
+wc -l combinedtrees | awk '{print $1}' >> params
+```
 
-### This isn't quite satisfactory because there aren't exactly n=500 boostraps for each locus, so at the moment, the "last locus" is ### getting missed out. Probably need some control loops of while i < 500, n++, with if statements starting again from the beginning ###of combined trees ### if the end is reached. Look at this tomorrow.
+There aren't exactly n=500 bootstrap reps per locus, because the bootstrapping process is taking place at sites within loci, and then across loci as well, so the following R code loops over the total number of trees we have concatenated together.
 
-for j in `seq 0 $numboots`;
-do extraj=$(expr $j + 1) 
-for i in `seq 1 $noloci`;
-do iter=$(expr $i - 1);
-iternext=$(expr $iter \* $bootplusone);
-final=$(expr $extraj + $iternext);
-tail -n+$final combinedtrees | head -n1 >> boot$j;
-done;
-done
+```
+params <- read.table("params")
+treefile <- as.matrix(read.table("combinedtrees"))
+
+x <- 1
+j <- 2
+
+mastertemp <- NULL
+
+for (i in 1:params[1,1]) {
+temp <- NULL
+while (is.null(temp) || dim(temp)[1] < params[2,1]) {
+temp <- rbind(temp,treefile[x,1])
+x <- x+500
+if (x > params[3,1]) {
+x <- j
+j <- j + 1
+}
+}
+varname <- paste("boot",(i-1),sep="")
+write.table(temp,varname,sep="",quote=FALSE, row.names=FALSE,col.names=FALSE)
+}
 ```
 
 Using the boot0-boot499 files, you can then repeat your bootstrapping on these high-graded loci following along with the steps at: 
