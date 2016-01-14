@@ -1,6 +1,7 @@
 # No_of_pis_per_locus
 You might need to filter your UCE data just to retain the most variable loci for *BEAST etc
 
+# Getting the number of PIs per locus
 For a given folder full of your UCE loci as individual nexus alignments, the following R code will spit out a list of your loci, the number of parsimony informative sites (pis), and the length of the locus. 
 
 ```
@@ -29,6 +30,7 @@ write.table(record, "list_of_pis_by_locus.txt",quote=FALSE, row.names=FALSE,col.
 
 You can also use this list to summarize the number of pis in loci across different datasets using the code at: https://github.com/laninsky/comparing_lists
 
+# Pruning gene trees corresponding to less variable loci from your total trees file
 After I've run RAxML on my 'complete' dataset, I then use a modification of the file spat out above to prune the total gene trees file for all the loci, to only the more variable ones. To do this, you need to modify the "list_of_pis_by_locus.txt" to just the first column with the loci names, containing the loci you want to get rid of out of your file (and stripping any file suffixes e.g. 'nexus' from the names). Call this list "remove_list.txt". 
 
 You then need to navigate to your complete_genetrees folder, and run the code at #6 at the following link in order to get a tree file which has the locus names given explicitly:
@@ -97,7 +99,23 @@ write.table(temp,varname,sep="",quote=FALSE, row.names=FALSE,col.names=FALSE)
 Using the boot0-boot499 files, you can then repeat your bootstrapping on these high-graded loci following along with the steps at: 
 https://github.com/laninsky/UCE_processing_steps
 
-In addition, you might be interested in doing the same thing for a concatenated run of RAxML/exabayes on your complete/incomplete data. To do this, you can use the following code to move the nexus files for your 'less informative' loci (based on the remove_list.txt file you made) to another subfolder. After doing this, you can carry on at Step8A of https://github.com/laninsky/UCE_processing_steps to generate your new RAxML files.
+# Pruning your nexus alignments of less variable loci
+In addition, you might be interested in high-grading for more informative loci when doing a concatenated run of RAxML/exabayes on your complete/incomplete data. To do this, you can use the following code to move the nexus files for your 'less informative' loci (based on the remove_list.txt file you made) to another subfolder. To use this code, make sure remove_list.txt is in the folder with the nexus files that you want to highgrade for. It will transfer the less variable loci in your "remove_list.txt" to the "less_variable" folder.
+
+```
+mkdir less_variable
+noloci=`wc -l remove_list.txt | awk '{print $1}'`
+
+for i in `seq 1 $noloci`;
+do locusname=`tail -n+$i remove_list.txt | head -n1`;
+mv $locusname.nexus less_variable/
+done;
+
+mv remove_list.txt less_variable/
+```
+
+After doing this, you can carry on at Step8A of https://github.com/laninsky/UCE_processing_steps to generate your new RAxML files.
+
 
 
 #This pipeline wouldn't be possible without:
