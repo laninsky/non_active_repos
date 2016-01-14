@@ -29,7 +29,7 @@ write.table(record, "list_of_pis_by_locus.txt",quote=FALSE, row.names=FALSE,col.
 
 You can also use this list to summarize the number of pis in loci across different datasets using the code at: https://github.com/laninsky/comparing_lists
 
-After I've run RAxML on my 'complete' dataset, I then use a modification of the file spat out above to prune the total genetrees file for all the loci, to only the more variable ones. To do this, you need to modify the "list_of_pis_by_locus.txt" to just the first column with the loci names, containing the loci you want to get rid of out of your file (and stripping any file suffixes e.g. 'nexus' from the names). Call this list "remove_list.txt". 
+After I've run RAxML on my 'complete' dataset, I then use a modification of the file spat out above to prune the total gene trees file for all the loci, to only the more variable ones. To do this, you need to modify the "list_of_pis_by_locus.txt" to just the first column with the loci names, containing the loci you want to get rid of out of your file (and stripping any file suffixes e.g. 'nexus' from the names). Call this list "remove_list.txt". 
 
 You then need to navigate to your complete_genetrees folder, and run the code at #6 at the following link in order to get a tree file which has the locus names given explicitly:
 https://github.com/laninsky/Phase_hybrid_from_next_gen/tree/master/post-processing
@@ -96,6 +96,8 @@ write.table(temp,varname,sep="",quote=FALSE, row.names=FALSE,col.names=FALSE)
 
 Using the boot0-boot499 files, you can then repeat your bootstrapping on these high-graded loci following along with the steps at: 
 https://github.com/laninsky/UCE_processing_steps
+
+In addition, you might be interested in doing the same thing for a concatenated run of RAxML/exabayes on your complete/incomplete data. To do this, you can use the following code to move the nexus files for your 'less informative' loci (based on the remove_list.txt file you made) to another subfolder. After doing this, you can carry on at Step8A of https://github.com/laninsky/UCE_processing_steps to generate your new RAxML files.
 
 
 #This pipeline wouldn't be possible without:
