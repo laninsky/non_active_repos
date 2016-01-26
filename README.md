@@ -47,17 +47,17 @@ python ../../bin/pyrad/pyrad/pyRAD.py
 ```
 (the ../../ blah blah is the relative pathway to the pyRAD.py script from the working folder we are in). I then edited the params.txt file to personalize it to our dataset. Specifically I changed the following options:
 
-#2 (the location of our reads) to: "/nfs1/FW_HMSC/Baker_Lab/24Aug2015_GBS_run/lane3-s023-index--GBS0073_S23_L003_R*_001.fastq.gz" (the * means it will match to R1 and R2)
+--2 (the location of our reads) to: "/nfs1/FW_HMSC/Baker_Lab/24Aug2015_GBS_run/lane3-s023-index--GBS0073_S23_L003_R*_001.fastq.gz" (the * means it will match to R1 and R2)
 
-#3 (the location of our barcode) to: "./barcodes" (the "./" just means, current directory)
+--3 (the location of our barcode) to: "./barcodes" (the "./" just means, current directory)
 
-#4 (the path to vsearch) to: "/nfs1/FW_HMSC/Baker_Lab/bin/vsearch/bin/vsearch-1.1.3-linux-x86_64"
+--4 (the path to vsearch) to: "/nfs1/FW_HMSC/Baker_Lab/bin/vsearch/bin/vsearch-1.1.3-linux-x86_64"
 
-#6 (our restriction cut overhangs) to: "AGCTT,CGG" (overhang for rare cutter hindIII, followed by overhang for mspI)
+--6 (our restriction cut overhangs) to: "AGCTT,CGG" (overhang for rare cutter hindIII, followed by overhang for mspI)
 
-#7 (the number of processors - seeing as I was running on an interactive session with only 1 proc) to: 1 (when running as a PBS script, I have jacked this up to 8)
+--7 (the number of processors - seeing as I was running on an interactive session with only 1 proc) to: 1 (when running as a PBS script, I have jacked this up to 8)
 
-#11 (datatype) to: pairddrad
+--11 (datatype) to: pairddrad
 
 I left everything else as default, because we aren't running any of the other steps other than demultiplexing right now.
 
