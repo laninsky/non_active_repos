@@ -97,3 +97,9 @@ python ../../bin/pyrad/pyrad/pyRAD.py -p params_filter.txt -s 2
 ```
 python ../../bin/pyrad/pyrad/pyRAD.py  -p params_cluster.txt -s 3
 ```
+
+15)  The next steps are calculating error rates across the loci and then calling the consensus sequence. At this step, I bumped up param 8 in the file to what I wanted it to be for the final dataset (e.g. 30 for a high-cov dataset, but at least 10 even for low coverage).
+```
+python ../../bin/pyrad/pyrad/pyRAD.py  -p params_diversity.txt -s 4
+python /nfs1/FW_HMSC/Baker_Lab/bin/pyrad/pyrad/pyRAD.py  -p /nfs1/FW_HMSC/Baker_Lab/24Aug2015_GBS_run/working/params_diversity.txt -s 5
+```
