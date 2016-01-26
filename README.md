@@ -77,7 +77,7 @@ done
 11) Installing PEAR after going to the "bin" directory where I've dumped all the programs we need to use (/nfs1/FW_HMSC/Baker_Lab/bin):
 ```
 wget 'http://sco.h-its.org/exelixis/web/software/pear/files/pear-0.9.6-bin-64.tar.gz'
-``
+```
 12) Running PEAR on our demultiplexed *.fastq files, again from the parent folder mentioned above:
 ```
 for gfile in fastq/*_R1.fq;
@@ -87,8 +87,13 @@ for gfile in fastq/*_R1.fq;
           -n 33 >> pear.log 2>&1
 done
 ```
-13) I modified the params file (attached) following the instructions of the tutorial, and then ran pyRAD to filter the assembled data
+13) I modified the params file (attached) following the instructions of the tutorial (changing type of data to ddrad and also pointing to the assembled files), and then ran pyRAD to filter the assembled data
 (disregarding the unassembled guys for now). The -s 2 option is just saying only do step 2 (the filtering step). 
 ```
 python ../../bin/pyrad/pyrad/pyRAD.py -p params_filter.txt -s 2
+```
+
+14) I then created a new params file which pointed to the edited, assembled files which resulted from the previous filtering step, and ran pyRAD to do the within-sample clustering step: (http://nbviewer.ipython.org/gist/dereneaton/dc6241083c912519064e/tutorial_pairddRAD_3.0.4-merged.ipynb) with the command:
+```
+python ../../bin/pyrad/pyrad/pyRAD.py  -p params_cluster.txt -s 3
 ```
