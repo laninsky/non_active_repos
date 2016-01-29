@@ -103,3 +103,8 @@ python ../../bin/pyrad/pyrad/pyRAD.py  -p params_cluster.txt -s 3
 python ../../bin/pyrad/pyrad/pyRAD.py  -p params_diversity.txt -s 4
 python /nfs1/FW_HMSC/Baker_Lab/bin/pyrad/pyrad/pyRAD.py  -p /nfs1/FW_HMSC/Baker_Lab/24Aug2015_GBS_run/working/params_diversity.txt -s 5
 ```
+
+14) Step 6 clusters the consensus loci across samples
+```
+python2.7 /scratch/a499a400/bin/pyrad-3.0.63/pyrad/pyRAD.py -p anoles_s456.txt -s 6 
+```
