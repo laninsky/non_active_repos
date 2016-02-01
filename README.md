@@ -114,7 +114,7 @@ python2.7 /scratch/a499a400/bin/pyrad-3.0.63/pyrad/pyRAD.py -p anoles_s456.txt -
 python2.7 /scratch/a499a400/bin/pyrad-3.0.63/pyrad/pyRAD.py -p anoles_7.txt -s 7 
 ```
 
-17) After dealing with the merged dataset, it is time to go back to the unassembled reads and deal with these. This involves editing the params files for each of the steps. We start at Step 2 to concatenate our reads, so the params file needs to have the input data modified (from 'assembled' to 'unassembled') and the datatype modified to 'pairddrad'.
+17) After dealing with the merged dataset, it is time to go back to the unassembled reads and deal with these. This involves editing the params files for each of the steps. We start at Step 2 to concatenate our reads, so the params file needs to have the input data modified (from 'assembled' to 'unassembled') and the datatype modified to 'pairddrad'. Before starting this step, move the existing output in the clust.88, edits, outfiles and stats folders into a subfolder called 'merged' within each of these, so it doesn't get overwritten.
 ```
 python2.7 /scratch/a499a400/bin/pyrad-3.0.63/pyrad/pyRAD.py -p anoles_concat_s2.txt -s 2
 ```
