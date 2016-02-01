@@ -104,7 +104,17 @@ python ../../bin/pyrad/pyrad/pyRAD.py  -p params_diversity.txt -s 4
 python /nfs1/FW_HMSC/Baker_Lab/bin/pyrad/pyrad/pyRAD.py  -p /nfs1/FW_HMSC/Baker_Lab/24Aug2015_GBS_run/working/params_diversity.txt -s 5
 ```
 
-14) Step 6 clusters the consensus loci across samples
+15) Step 6 clusters the consensus loci across samples
 ```
 python2.7 /scratch/a499a400/bin/pyrad-3.0.63/pyrad/pyRAD.py -p anoles_s456.txt -s 6 
+```
+
+16) Step 7 outputs the final files. I run this on a variety of "completeness" levels ranging from at least 2 individuals, upwards.
+```
+python2.7 /scratch/a499a400/bin/pyrad-3.0.63/pyrad/pyRAD.py -p anoles_7.txt -s 7 
+```
+
+17) After dealing with the merged dataset, it is time to go back to the unassembled reads and deal with these. This involves editing the params files for each of the steps. We start at Step 2 to concatenate our reads, so the params file needs to have the input data modified (from 'assembled' to 'unassembled') and the datatype modified to 'pairddrad'.
+```
+python2.7 /scratch/a499a400/bin/pyrad-3.0.63/pyrad/pyRAD.py -p anoles_concat_s2.txt -s 2
 ```
