@@ -121,5 +121,5 @@ python2.7 /scratch/a499a400/bin/pyrad-3.0.63/pyrad/pyRAD.py -p anoles_concat_s2.
 
 18) I then followed the "cluster the concatenated reads" option for Step 3 (changing the datatype to ddrad from pairddrad in the params file, as well as the location of the data to the 'edits' folder):
 ```
-
+python2.7 /scratch/a499a400/bin/pyrad-3.0.63/pyrad/pyRAD.py -p anoles_concat_s3.txt -s 3
 ```
