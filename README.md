@@ -123,3 +123,8 @@ python2.7 /scratch/a499a400/bin/pyrad-3.0.63/pyrad/pyRAD.py -p anoles_concat_s2.
 ```
 python2.7 /scratch/a499a400/bin/pyrad-3.0.63/pyrad/pyRAD.py -p anoles_concat_s3.txt -s 3
 ```
+
+19) The next steps are error estimation, creating consensus sequences, and across sample clustering. For this step, I tweaked the params file by bumping up the minimum coverage (to 10X for low coverage datasets, 30X for high coverage): 
+```
+python2.7 /scratch/a499a400/bin/pyrad-3.0.63/pyrad/pyRAD.py -p anoles_concat_s456.txt -s 456
+```
