@@ -128,3 +128,8 @@ python2.7 /scratch/a499a400/bin/pyrad-3.0.63/pyrad/pyRAD.py -p anoles_concat_s3.
 ```
 python2.7 /scratch/a499a400/bin/pyrad-3.0.63/pyrad/pyRAD.py -p anoles_concat_s456.txt -s 456
 ```
+
+16) Step 7 outputs the final files. I run this on a variety of "completeness" levels ranging from at least 2 individuals, upwards. Don't forget to change the prefix name between tweaking the number of individuals you want the completeness to be set at.
+```
+python2.7 /scratch/a499a400/bin/pyrad-3.0.63/pyrad/pyRAD.py -p anoles_concat_7.txt -s 7 
+```
