@@ -2,7 +2,7 @@
 You might need to filter your UCE data just to retain the most variable loci for *BEAST etc
 
 # Getting the number of PIs per locus
-For a given folder full of your UCE loci as individual nexus alignments, the following R code will spit out a list of your loci, the number of parsimony informative sites (pis), and the length of the locus. 
+For a given folder full of your UCE loci as individual nexus alignments (see fasta code below), the following R code will spit out a list of your loci, the number of parsimony informative sites (pis), and the length of the locus. 
 
 ```
 #install phyloch and all its necessary packages (e.g. ape, colorspace, XML)
@@ -18,6 +18,31 @@ record <- c("locusname","pis","length")
 for (j in 1:nooffiles) {
 write.table((gsub("?","N",(readLines(listoffiles[j])),fixed=TRUE)),"list_of_pis_by_locus.txt",sep="",quote=FALSE,row.names=FALSE,col.names=FALSE)
 tempfile <- read.nex("list_of_pis_by_locus.txt")
+templength <- dim(tempfile)[2]
+temppis <- pis(tempfile)
+temp <- cbind(listoffiles[j],temppis,templength)
+record <- rbind(record,temp)
+}
+
+write.table(record, "list_of_pis_by_locus.txt",quote=FALSE, row.names=FALSE,col.names=FALSE)
+
+```
+
+fasta code
+```
+#install phyloch and all its necessary packages (e.g. ape, colorspace, XML)
+library(phyloch)
+#Change to your working directory
+
+# getting all the files
+listoffiles <- list.files(pattern="*.fa*")
+nooffiles <- length(listoffiles)
+
+record <- c("locusname","pis","length")
+
+for (j in 1:nooffiles) {
+write.table((gsub("?","N",(readLines(listoffiles[j])),fixed=TRUE)),"list_of_pis_by_locus.txt",sep="",quote=FALSE,row.names=FALSE,col.names=FALSE)
+tempfile <- read.fas("list_of_pis_by_locus.txt")
 templength <- dim(tempfile)[2]
 temppis <- pis(tempfile)
 temp <- cbind(listoffiles[j],temppis,templength)
