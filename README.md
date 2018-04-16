@@ -8,3 +8,9 @@ GTTCTTTAACCCTGCACACAAAGAAAACTATCATTCAATCAAAGCCATCATCTCAGAGCTGCTGCTTTTTTTTCTCCAGA
 Each SNP has two lines (one for each allelic state). Samples are designated by "C[0-9]", and separated from the per-sample read count by an underscore. Each sample is separated from the following samples by a "|"
 
 This script will filter for SNPs where at least one individual has at least 10 reads for at least one allele.
+
+To run it, paste (or source) the rscript in this repository into R, and then in your R console execute the function by:
+```
+filtering_SNPs_by_sample_coverage(working_dir,input_file)
+e.g. filtering_SNPs_by_sample_coverage("./","results_0.1_type0a_TEST.fa")
+```
