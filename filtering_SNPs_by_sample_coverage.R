@@ -1,7 +1,7 @@
-filtering_SNPs_by_sample_coverage <- function(working_dir,input_file) {
+input_file <- readLines(file("stdin"))
+
   cat("Call this function by filtering_SNPs_by_sample_coverage(working_dir,input_file)")
   cat('e.g. filtering_SNPs_by_sample_coverage("./","results_0.1_type0a_TEST.fa")')
-  setwd(working_dir)
   input <- read.table(input_file,header = FALSE,sep = "\t")
   to_delete <- NULL
 
@@ -30,5 +30,4 @@ filtering_SNPs_by_sample_coverage <- function(working_dir,input_file) {
     }    
   }
   output <- input[-to_delete,1]                                           
-  write.table(output,"filtered_SNPs.txt",quote=FALSE,col.names=FALSE,row.names=FALSE)
-}                                             
+  write.table(output,"filtered_SNPs.fa",quote=FALSE,col.names=FALSE,row.names=FALSE)
