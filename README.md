@@ -9,8 +9,9 @@ Each SNP has two lines (one for each allelic state). Samples are designated by "
 
 This script will filter for SNPs where at least one individual has at least 10 reads for at least one allele.
 
-To run it, paste (or source) the rscript in this repository into R, and then in your R console execute the function by:
+To run it, copy filtering_SNPs_by_sample_coverage.R into your output directory and execute by:
 ```
-filtering_SNPs_by_sample_coverage(working_dir,input_file)
-e.g. filtering_SNPs_by_sample_coverage("./","results_0.1_type0a_TEST.fa")
+Rscript filtering_SNPs_by_sample_coverage.R path_and_name_of_file_you_want_to_filter
+e.g.
+Rscript filtering_SNPs_by_sample_coverage.R results_21merged_trimmedQ20_R1_21merged_trimmedQ20_R2_22merged_trimmedQ20_R1_22merged_trimmedQ20_R2_23merged_trimmedQ20_R1_23merged_trimmedQ20_R2_24merged_trimmedQ20_R1_24merged_trimmedQ20_R2_25merged_trimmedk51_coherents_type_0a.fa
 ```
