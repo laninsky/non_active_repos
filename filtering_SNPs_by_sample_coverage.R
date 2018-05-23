@@ -1,4 +1,4 @@
-input_file <- readLines(file("stdin"))
+input_file <- commandArgs()[1]
 
   cat("Call this function by filtering_SNPs_by_sample_coverage(working_dir,input_file)")
   cat('e.g. filtering_SNPs_by_sample_coverage("./","results_0.1_type0a_TEST.fa")')
