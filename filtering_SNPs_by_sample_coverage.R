@@ -1,4 +1,4 @@
-input_file <- commandArgs()
+input_file <- commandArgs(trailingOnly=TRUE)
 
 print(input_file)
   cat("Rscript filtering_SNPs_by_sample_coverage.R path_and_name_of_file_you_want_to_filter
