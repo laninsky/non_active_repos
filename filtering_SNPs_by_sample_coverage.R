@@ -1,7 +1,7 @@
 input_file <- commandArgs(trailingOnly=TRUE)
 
-print(input_file)
-  cat("Rscript filtering_SNPs_by_sample_coverage.R path_and_name_of_file_you_want_to_filter
+  cat("Run this script by:
+Rscript filtering_SNPs_by_sample_coverage.R path_and_name_of_file_you_want_to_filter
 e.g.
 Rscript filtering_SNPs_by_sample_coverage.R results_21merged_trimmedQ20_R1_21merged_trimmedQ20_R2_22merged_trimmedQ20_R1_22merged_trimmedQ20_R2_23merged_trimmedQ20_R1_23merged_trimmedQ20_R2_24merged_trimmedQ20_R1_24merged_trimmedQ20_R2_25merged_trimmedk51_coherents_type_0a.fa"
 )
