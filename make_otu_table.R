@@ -26,4 +26,5 @@ make_otu_table <- function(fasta_file) {
       }
     }  
   }
+  write.table(outputmatrix,"otu_table.csv",quote = FALSE,row.names=FALSE,col.names=FALSE,sep=",")
 }
