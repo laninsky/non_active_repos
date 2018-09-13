@@ -16,7 +16,7 @@ cgcccgtcggtatttccgattgaatggtttagtgaggcctttggattagcgtgccctttt
 gggtgtgccgagaaattggacaaacttgatcatttagaggaagtaaaagtcgtaacaagg
 tttcc
 ```
-The read name is located next to the start-of-line carrot. The sample locations and number of reads are located within merged_sample={}, and the cluster the read is assigned to follows cluster=. Each cluster may contain multiple reads. In this example, the 2nd and 3rd reads are located in the same cluster.
+The read name is located next to the start-of-line carrot. The sample locations and number of reads are located within merged_sample={}, and the OTU the read is assigned to follows cluster=. Each OTU may contain multiple reads. In this example, the 2nd and 3rd reads are assigned to the same OTU.
 
 To use the code, paste the R-code from this repository into your R console and then execute it by:
 ```
@@ -28,5 +28,8 @@ make_otu_table("/Users/alanaalexander/Downloads/test_fasta.fasta")
 ```
 This will return a file called otu_table.csv into your working directory. For the example three-line fasta above, this would be:
 ```
-
+,GGW2_18S1,GW1_18S1,GW3_18S1,Dores3_18S1,Dores2_18S1,LE1_18S1,Dores1_18S1
+M01168:336:000000000-BP8T5:1:1102:18849:4209_CONS_SUB_SUB_CMP,2,1,7,0,0,0,0
+M01168:336:000000000-BP8T5:1:1103:21600:7128_CONS_SUB_SUB,0,1,3,1,13,1,1
 ```
+OTU name is located in the left-most column, followed by columns of sample locations and the number of reads assigned to each OTU.
