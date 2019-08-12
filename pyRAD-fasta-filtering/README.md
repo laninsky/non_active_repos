@@ -1,4 +1,6 @@
 # pyRAD-fasta-filtering
+Originally at: https://github.com/laninsky/pyRAD-fasta-filtering
+
 Some R scripts I use for dealing with pyRAD output. After I create my *.loci file through pyRAD, I pull that file through:
 https://github.com/laninsky/reference_aligning_to_established_loci/tree/master/phase_everyone/helper_scripts
 
