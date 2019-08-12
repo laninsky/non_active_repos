@@ -1,4 +1,6 @@
 # number_of_hets_per_locus
+Originally at: https://github.com/laninsky/number_of_hets_per_locus
+
 Using a folder fill of fasta alignments for a single individual, spits out number of hets per locus
 
 Following the steps at https://github.com/laninsky/pyRAD-fasta-filtering where you've carved up your larger fasta files into folders for each individual containing separate fasta files per locus, perhaps you want to double check diversity levels etc in your dataset to weed out any potentially paralagous loci.
