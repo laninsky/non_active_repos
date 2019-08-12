@@ -38,3 +38,6 @@ Second step:
 ```
 Rscript allele_tweaking.R
 ```
+
+# Version history
+These scripts were written for exploratory analyses of RADseq datasets that were never published. I am no longer actively maintaining this repository, but will respond to issues.
