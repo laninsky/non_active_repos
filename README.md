@@ -16,5 +16,5 @@ e.g.
 Rscript filtering_SNPs_by_sample_coverage.R results_21merged_trimmedQ20_R1_21merged_trimmedQ20_R2_22merged_trimmedQ20_R1_22merged_trimmedQ20_R2_23merged_trimmedQ20_R1_23merged_trimmedQ20_R2_24merged_trimmedQ20_R1_24merged_trimmedQ20_R2_25merged_trimmedk51_coherents_type_0a.fa
 ```
 
-## Versuib gustirt
+## Version History
 Wrote this as a one-off goof to help out a lab mate. I am no longer actively maintaining this repository, but will respond to issues.
