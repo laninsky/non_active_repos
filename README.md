@@ -1,4 +1,6 @@
 # pyRAD_alleles_into_structure
+Originally at: https://github.com/laninsky/pyRAD_alleles_into_structure
+
 This set of scripts parses out pyRAD's allele file into a structure file based on alleles (rather than SNPs), as well as a SNP-based structure file. It also outputs info on completeness of the data set and if alleles are shared across populations/species.
 
 # species_assignments file
