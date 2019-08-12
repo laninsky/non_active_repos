@@ -135,3 +135,6 @@ python2.7 /scratch/a499a400/bin/pyrad-3.0.63/pyrad/pyRAD.py -p anoles_concat_7.t
 ```
 
 21) Depending on whether I am combining this data with other sequence data (i.e. I need to reference align), I use the following pipelines to generate datasets in the formats I would like: https://github.com/laninsky/reference_aligning_to_established_loci or https://github.com/laninsky/pyRAD_alleles_into_structure
+
+### Version history
+Wrote this repository for some exploratory RADseq analysis that didn't make it to publication. I am no longer actively maintaining this repository, but will respond to issues.
