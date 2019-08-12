@@ -1,4 +1,6 @@
 # No_of_pis_per_locus
+Originally at: https://github.com/laninsky/Highgrading_for_pis_per_locus
+
 You might need to filter your UCE data just to retain the most variable loci for *BEAST etc
 
 ### Getting the number of PIs per locus
