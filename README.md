@@ -33,3 +33,6 @@ M01168:336:000000000-BP8T5:1:1102:18849:4209_CONS_SUB_SUB_CMP,2,1,7,0,0,0,0
 M01168:336:000000000-BP8T5:1:1103:21600:7128_CONS_SUB_SUB,0,1,3,1,13,1,1
 ```
 OTU name is located in the left-most column, followed by columns of sample locations and the number of reads assigned to each OTU.
+
+## Version history 
+Wrote this as a one-off goof to help out a lab mate. I am no longer actively maintaining this repository, but will respond to issues.
