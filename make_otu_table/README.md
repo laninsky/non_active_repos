@@ -1,4 +1,6 @@
 # make_otu_table
+Originally at: https://github.com/laninsky/make_otu_table
+
 Converting from obitools/sumaclust fasta file to an OTU table
 
 Expects a fasta file formatted as follows:
