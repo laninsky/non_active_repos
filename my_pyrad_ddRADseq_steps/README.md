@@ -1,4 +1,6 @@
 # my_pyrad_ddRADseq_steps
+Originally at: https://github.com/laninsky/my_pyrad_ddRADseq_steps
+
 just some notes for myself about the steps I work through with ddRADseq data and pyrad. I relied very heavily on the pyRAD tutorials e.g. http://nbviewer.jupyter.org/gist/dereneaton/dc6241083c912519064e/tutorial_pairddRAD_3.0.4-merged.ipynb
 
 1) After logging onto the file transfer infrastructure, I copied the fastq.gz (zipped fastq files) to a temporary storage location e.g. /nfs1/FW_HMSC/Baker_Lab/24Aug2015_GBS_run
